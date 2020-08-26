@@ -72,6 +72,8 @@ function employeeBonus() {
     } else if (returnPercentage - returnPercentageIncome < 0) {
       returnPercentage = 0;
     }
+    returnTotalBonus = salary * returnPercentage;
+    returnCompensation = returnTotalBonus + salary;
     const employeeBonusObject = {
       name: names,
       bonusPercentage: returnPercentage,

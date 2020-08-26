@@ -59,3 +59,4 @@ NOTE: You may abstract out this bonus calculation into a second function if you 
 - Put the output on the DOM (visually on the page).
 - Make the app run only after the user clicks on a button on the page
 - Then style the output, making it visually appealing.
+y
