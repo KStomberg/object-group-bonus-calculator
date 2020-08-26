@@ -23,3 +23,8 @@ totalBonus: total bonus rounded to nearest dollar
 
 TODO:
 Convert Salary and Employee# to Numbers
+
+assuming 65k+
+if above 13 -> bring down to 13, then subtract 1
+if below or equal 0 -> subtract 1, then bring down to 0
+

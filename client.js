@@ -34,7 +34,7 @@ const employees = [
     employeeNumber: '4581',
     annualSalary: '13000',
     reviewRating: 5,
-  }
+  },
 ];
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
@@ -45,7 +45,7 @@ const employees = [
 
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
-let updatedEmployees = []
+let updatedEmployees = [];
 console.log(employees);
 let returnPercentageRating = 0;
 let returnPercentageDigit = 0;
@@ -58,50 +58,56 @@ function employeeBonus() {
     let rating = el.reviewRating;
     let numberLength = el.employeeNumber.length;
     let salary = Number(el.annualSalary);
-    let returnCompensation = 0
-    let returnTotalBonus = 0
+    let returnCompensation = 0;
+    let returnTotalBonus = 0;
     console.log(names);
     console.log(numberLength);
     ratingCalculator(rating);
     digitLength(numberLength);
     employeeIncomeCheck(salary);
-    returnPercentage = returnPercentageDigit + returnPercentageRating - returnPercentageIncome;
+    returnPercentage = returnPercentageDigit + returnPercentageRating;
+    if (returnPercentage > 0.13) {
+      returnPercentage = 0.13;
+      returnPercentage = returnPercentage - returnPercentageIncome;
+    } else if (returnPercentage - returnPercentageIncome < 0) {
+      returnPercentage = 0;
+    }
     const employeeBonusObject = {
       name: names,
       bonusPercentage: returnPercentage,
       totalCompensation: returnCompensation,
-      totalBonus: returnTotalBonus
-    }
-    updatedEmployees.push(employeeBonusObject)
-  }// end for
-  return returnPercentage
-}// end employeeBonus
+      totalBonus: returnTotalBonus,
+    };
+    updatedEmployees.push(employeeBonusObject);
+  } // end for
+  return returnPercentage;
+} // end employeeBonus
 
 function ratingCalculator(rating) {
-  returnPercentageRating = 0
+  returnPercentageRating = 0;
   if (rating === 5) {
-    returnPercentageRating = .10;
+    returnPercentageRating = 0.1;
   } else if (rating === 4) {
-    returnPercentageRating = .06;
+    returnPercentageRating = 0.06;
   } else if (rating === 3) {
-    returnPercentageRating = .04;
-  }// end if
-  return returnPercentageRating
-}// end ratingCalculator function
+    returnPercentageRating = 0.04;
+  } // end if
+  return returnPercentageRating;
+} // end ratingCalculator function
 
 function digitLength(numberLength) {
-  returnPercentageDigit = 0
+  returnPercentageDigit = 0;
   if (numberLength === 4) {
-    returnPercentageDigit = .05;
-  }// end if
+    returnPercentageDigit = 0.05;
+  } // end if
   return returnPercentageDigit;
-}// end digitLength function
+} // end digitLength function
 console.log(employeeBonus(employees));
 
 function employeeIncomeCheck(salary) {
   returnPercentageIncome = 0;
-  if ( salary > 65000 ) {
-  returnPercentageIncome = .01;
+  if (salary > 65000) {
+    returnPercentageIncome = 0.01;
   } // end if
   return returnPercentageIncome;
 } // end employeeIncomeCheck
