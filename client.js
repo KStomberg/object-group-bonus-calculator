@@ -29,6 +29,12 @@ const employees = [
     annualSalary: '35000',
     reviewRating: 1,
   },
+  {
+    name: 'Doug',
+    employeeNumber: '4581',
+    annualSalary: '13000',
+    reviewRating: 5,
+  }
 ];
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
