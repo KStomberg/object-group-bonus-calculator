@@ -41,11 +41,40 @@ const employees = [
 // Ask questions when you don't.
 
 console.log(employees);
-
+let returnPercentageRating = 0;
+let returnPercentageDigit = 0;
+let returnPercentage = 0;
 function employeeBonus() {
   for (let i = 0; i < employees.length; i++) {
     const el = employees[i];
-    let names = el.name
+    let names = el.name;
+    let rating = el.reviewRating;
+    let numberLength = el.employeeNumber.length;
     console.log(names);
-  }
-}
+    console.log(numberLength)
+    ratingCalculator(rating);
+    digitLength(numberLength);
+    returnPercentage = returnPercentageDigit + returnPercentageRating;
+  }// end for
+  return returnPercentage
+}// end employeeBonus
+
+function ratingCalculator(rating) {
+  if (rating === 5) {
+    returnPercentageRating = .10;
+  } else if (rating === 4) {
+    returnPercentageRating = .06;
+  } else if (rating === 3) {
+    returnPercentageRating = .04;
+  }// end if
+  return returnPercentageRating
+}// end ratingCalculator function
+
+function digitLength(numberLength) {
+  if (numberLength === 4) {
+    returnPercentageDigit = 0.05;
+  }// end if
+  return returnPercentageDigit;
+}// end digitLength function
+console.log(employeeBonus(employees));
+
