@@ -39,27 +39,40 @@ const employees = [
 
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
-
+let updatedEmployees = []
 console.log(employees);
 let returnPercentageRating = 0;
 let returnPercentageDigit = 0;
 let returnPercentage = 0;
+let returnPercentageIncome = 0;
 function employeeBonus() {
   for (let i = 0; i < employees.length; i++) {
     const el = employees[i];
     let names = el.name;
     let rating = el.reviewRating;
     let numberLength = el.employeeNumber.length;
+    let salary = Number(el.annualSalary);
+    let returnCompensation = 0
+    let returnTotalBonus = 0
     console.log(names);
-    console.log(numberLength)
+    console.log(numberLength);
     ratingCalculator(rating);
     digitLength(numberLength);
-    returnPercentage = returnPercentageDigit + returnPercentageRating;
+    employeeIncomeCheck(salary);
+    returnPercentage = returnPercentageDigit + returnPercentageRating - returnPercentageIncome;
+    const employeeBonusObject = {
+      name: names,
+      bonusPercentage: returnPercentage,
+      totalCompensation: returnCompensation,
+      totalBonus: returnTotalBonus
+    }
+    updatedEmployees.push(employeeBonusObject)
   }// end for
   return returnPercentage
 }// end employeeBonus
 
 function ratingCalculator(rating) {
+  returnPercentageRating = 0
   if (rating === 5) {
     returnPercentageRating = .10;
   } else if (rating === 4) {
@@ -71,10 +84,18 @@ function ratingCalculator(rating) {
 }// end ratingCalculator function
 
 function digitLength(numberLength) {
+  returnPercentageDigit = 0
   if (numberLength === 4) {
-    returnPercentageDigit = 0.05;
+    returnPercentageDigit = .05;
   }// end if
   return returnPercentageDigit;
 }// end digitLength function
 console.log(employeeBonus(employees));
 
+function employeeIncomeCheck(salary) {
+  returnPercentageIncome = 0;
+  if ( salary > 65000 ) {
+  returnPercentageIncome = .01;
+  } // end if
+  return returnPercentageIncome;
+} // end employeeIncomeCheck
