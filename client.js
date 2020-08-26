@@ -45,12 +45,23 @@ const employees = [
 
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
+$(document).ready( readyNow )//end document ready
+function readyNow() {
+  employeeBonus();
+  console.log("Ready now")
+  $("#bonusCalculator").on("click", displayUpdatedEmployees);
+  }//end readyNow function
+
 let updatedEmployees = [];
-console.log(employees);
+
 let returnPercentageRating = 0;
+
 let returnPercentageDigit = 0;
+
 let returnPercentage = 0;
+
 let returnPercentageIncome = 0;
+
 function employeeBonus() {
   for (let i = 0; i < employees.length; i++) {
     const el = employees[i];
@@ -104,7 +115,6 @@ function digitLength(numberLength) {
   } // end if
   return returnPercentageDigit;
 } // end digitLength function
-console.log(employeeBonus(employees));
 
 function employeeIncomeCheck(salary) {
   returnPercentageIncome = 0;
@@ -113,3 +123,23 @@ function employeeIncomeCheck(salary) {
   } // end if
   return returnPercentageIncome;
 } // end employeeIncomeCheck
+
+function displayUpdatedEmployees() {
+  let el = $('#updatedEmployee');
+  el.empty();
+  for (let i = 0; i < updatedEmployees.length; i++) {
+    const employee = updatedEmployees[i];
+    el.append(
+      `<li>` +
+      "Name: " +
+      employee.name +
+      " Bonus percentage: " +
+      employee.bonusPercentage + 
+      " Total compensation: " + 
+      employee.totalCompensation +
+      " Total bonus: " +
+      employee.totalBonus +
+      `</li>`
+    );
+  }
+}
